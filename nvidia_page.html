@@ -1,0 +1,487 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta name="ps-key" content="1781-57d9f03d015405367a598032">
+    <meta name="ps-country" content="US">
+    <meta name="ps-language" content="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, user-scalable=yes">
+    <link rel="icon" type="image/x-icon" href="/geforce/store/assets/images/nvidia.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script defer rel="preload" src="//assets.adobedtm.com/launch-ENc990454cd5254a749eb3c5943d0d4287.min.js"></script>
+    <noscript>
+        <div class="no-js-warning">This site requires Javascript in order to view all its content. Please enable
+            Javascript in order to access all the functionality of this web site. Here are the <span
+                class="enable-js"><a href="http://www.enable-javascript.com/" target="_blank">instructions how to enable
+                    JavaScript in
+                    your web browser.</a></span>
+        </div>
+    </noscript>
+    <style>
+        .no-js-warning {
+            color: red;
+            display: inline-block;
+            padding: 80px 15px 15px;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+        }
+
+        .enable-js a {
+            color: #76b900;
+            text-decoration: none;
+        }
+    </style>
+
+    <script type="x-tmpl-mustache" id="cartTemplate">
+            {{#if products.length}}
+                <ul class="cart__items" style="max-height:{{height}}px">
+                    {{#products}}
+                        <li class="cart-item cart-item--{{id}}">
+                            <div class="cart-item__quantity-selector quantity-selector">
+                                {{#if (isExist isQuantity)}}
+                                {{#ifProductQuantityIsOne id}}
+                                <a class="quantity-selector__dec disabled"></a>
+                                {{else}}
+                                {{#ifProductOutOfStock id}}
+                                <a class="quantity-selector__dec disabled"></a>
+                                {{else}}
+                                <a class="quantity-selector__dec js-cart-item-dec" data-digital-river-id="{{id}}"></a>
+                                {{/ifProductOutOfStock}}
+                                {{/ifProductQuantityIsOne}}
+                                {{/if}}
+                                <span class="quantity-selector__value">{{quantity}}</span>
+                                    <span class="multiplier"></span>
+                                {{#if (isExist isQuantity)}}
+                                {{#ifProductLimitReached id}}
+                                <a class="quantity-selector__inc disabled"></a>
+                                {{else}}
+                                {{#ifProductOutOfStock id}}
+                                <a class="quantity-selector__inc disabled"></a>
+                                {{else}}
+                                {{#ifAvailableStock id}}
+                                <a class="quantity-selector__inc disabled"></a>
+                                {{else}}
+                                <a class="quantity-selector__inc js-cart-item-inc" data-digital-river-id="{{id}}"></a>
+                                {{/ifAvailableStock}}
+                                {{/ifProductOutOfStock}}
+                                {{/ifProductLimitReached}}
+                                {{/if}}
+                            </div>
+                            <div class="cart-item__name">
+                                {{name}}
+                                {{#if (isExist isQuantity)}}
+                                <div class="cart_remove"><a class="cart-item__remove js-cart-item-remove" data-digital-river-id="{{id}}">{{#remove}}{{/remove}}</a></div>
+                                {{/if}}
+                            </div>
+                            
+                            <div class="cart-item__price">
+                                {{{totalPrice}}}
+                            </div>
+                            {{#ifProductLimitReached id}}
+                            <div class="cart-item__product-info-message getProductStockMessage">
+                                {{#getProductStockMessage id}}{{/getProductStockMessage}}
+                            </div>
+                            {{/ifProductLimitReached}}
+                            {{#ifProductOutOfStock id}}
+                            <div class="cart-item__product-info-message getProductOutOfStockMessage">
+                                {{#getProductOutOfStockMessage id}}{{/getProductOutOfStockMessage}}
+                            </div>
+                            {{/ifProductOutOfStock}}
+                            {{#ifAvailableStock id}}
+                            <div class="cart-item__product-info-message getAvailableStockMessage">
+                                {{#getAvailableStockMessage id}}{{/getAvailableStockMessage}}
+                            </div>
+                            {{/ifAvailableStock}}
+                        </li>
+                        {{#if promo.length}}
+                            {{#promo}}
+                                <div class="cart__promotions">
+                                    <img class="cart_image" src="{{image}}" />
+                                    <span class="cart_desc">{{name}}</span>
+                                    <span class="cart_bundle_link">{{#included}}{{/included}}</span>
+                                </div>
+                            {{/promo}}
+                        {{/if}}
+                    {{/products}}
+                </ul>
+                <div class="cart__total">
+                    {{{total}}}
+                </div>
+                <div class="nv-button js-checkout cart__checkout-button" data-href="#captcha_container" target="overlay">
+                    <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 401.998 401.998" xml:space="preserve" class="padlock">
+                        <path d="M357.45,190.721c-5.331-5.33-11.8-7.993-19.417-7.993h-9.131v-54.821c0-35.022-12.559-65.093-37.685-90.218C266.093,12.563,236.025,0,200.998,0c-35.026,0-65.1,12.563-90.222,37.688C85.65,62.814,73.091,92.884,73.091,127.907v54.821h-9.135c-7.611,0-14.084,2.663-19.414,7.993c-5.33,5.326-7.994,11.799-7.994,19.417V374.59c0,7.611,2.665,14.086,7.994,19.417c5.33,5.325,11.803,7.991,19.414,7.991H338.04c7.617,0,14.085-2.663,19.417-7.991c5.325-5.331,7.994-11.806,7.994-19.417V210.135C365.455,202.523,362.782,196.051,357.45,190.721z M274.087,182.728H127.909v-54.821c0-20.175,7.139-37.402,21.414-51.675c14.277-14.275,31.501-21.411,51.678-21.411c20.179,0,37.399,7.135,51.677,21.411c14.271,14.272,21.409,31.5,21.409,51.675V182.728z"/>
+                    </svg><span>{{checkout}}</span> </div>
+                    <div class="cart__updates" id="cart__updates" style="display:none;color:#77ba02;font-weight: bold;"> <span class="cart_update_message">{{#updatedQuantity}}{{/updatedQuantity}}</span> </div>
+                    <div class="mixedCart__updates" id="mixedCart__updates" style="display:none;color:#77ba02;font-weight: bold;"> <span class="cart_update_message">{{#mixedCartMessage}}{{/mixedCartMessage}}</span> </div>
+                    <div class="errorCart__updates" id="errorCart__updates" style="display:none;color:#ff3333;font-weight: bold;"> <span class="cart_update_message">{{#checkoutError}}{{/checkoutError}}</span> </div> 
+                </div>
+            {{/if}}
+            {{^products}}
+                <div class="cart__empty">
+                    {{cartIsEmpty}}
+                </div>
+            {{/products}}
+        </script>
+    <script type="x-tmpl-mustache" id="notifyMeTemplate">
+            <div class="modalContent parbase section" >
+                <div class="hide-modal-content">
+                    <div id="dr-notify-me-{{id}}" class="general-container2 dr-notify-me">
+                        <div class="modal-content parsys">
+                            <iframe class="dr-notify-me-frame" src="https://store.nvidia.com/store?Action=DisplayNotifyMeFormPage&Env=BASE&Locale={{region}}&SiteID=nvidia&productID={{id}}"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    <script type="x-tmpl-mustache" id="NVnotifyMeTemplate">
+            <div class="modalContent parbase section" >
+                <div class="hide-modal-content">
+                    <div id="nv-notify-me-{{id}}" class="general-container2 nv-notify-me">
+                        <div class="modal-content parsys">
+                            <iframe allowfullscreen="" src="https://www.nvidia.com/content/forms/af/nvidia-forms/products-notify-me/consumer-notify-me/?productName={{prodName}}&productid={{id}}&region={{locale}}" class="cboxIframe" style="background-color: transparent; height: 560px;" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    <script>
+        //getlang
+        var getlang = location.pathname.split('/')[1];
+        document.documentElement.setAttribute("lang", getlang);
+        window.onload = function () {
+            $('html').attr('lang', getlang);
+
+        }
+        var lang = lang || undefined;;
+        (function () {
+
+            var widgetLang = function () {
+
+
+                var locale = window.location.pathname.split('/')[1];
+                if (locale === 'en-ca' || locale === 'fr-ca') {
+                    lang = 'CA';
+                } else if (locale === 'en-gb') {
+                    lang = 'GB';
+                } else if (locale === 'en-us') {
+                    lang = 'US';
+                } else if (locale === 'de-de') {
+                    lang = 'DE';
+                } else if (locale === 'es-es') {
+                    lang = 'ES';
+                } else if (locale === 'fr-fr') {
+                    lang = 'FR';
+                } else if (locale == 'ru-ru') {
+                    lang = 'RU';
+                } else if (locale == 'nl-nl') {
+                    lang = 'NL';
+                } else if (locale == 'es-mx') {
+                    lang = 'MX';
+                } else if (locale == 'es-ar') {
+                    lang = 'AR';
+                } else if (locale == 'pt-br') {
+                    lang = 'BR';
+                } else if (locale == 'en-au') {
+                    lang = 'AU'
+                } else if (locale === 'pl-pl') {
+                    lang = 'PL';
+                } else if (locale === 'it-it') {
+                    lang = 'IT';
+                } else if (locale === 'zh-tw') {
+                    lang = 'TW';
+                } else if (locale === 'da-dk') {
+                    lang = 'DK';
+                } else if (locale === 'nb-no') {
+                    lang = 'NO';
+                } else if (locale === 'fi-fi') {
+                    lang = 'FI';
+                } else if (locale === 'sv-se') {
+                    lang = 'SE';
+                }
+                return lang;
+            }
+            window.lang = widgetLang();
+            var hatchinit = function () {
+                jQuery(".buy-link").unbind();
+                (function (d, s, id) {
+                    if (d.getElementById(id + s)) document.getElementById(id + s).remove();
+                    var js, t = d.getElementsByTagName(s)[0];
+                    js = d.createElement(s);
+                    t.parentNode.insertBefore(js, t);
+                    js.id = id + s;
+                    var bskdnv = window.location.hostname.split("-");
+                    if (bskdnv.length > 1) {
+                        bskdnv = "https://" + bskdnv[0] + "-www.nvidia.partners/edge/";
+                    } else if (window.location.hostname.indexOf("local") != -1) {
+                        bskdnv = "/assets/";
+                    } else {
+                        bskdnv = "https://www.nvidia.partners/edge/";
+                    }
+                    js.src = bskdnv + "js/edge-buy.0.1.min.js";
+
+                    t.parentNode.insertBefore(js, t);
+                }(document, 'script', 'nvidia-'));
+            }
+            var nvbuyinit = function () {
+                if (jQuery("div.fe-pids") && jQuery("div.fe-pids").length > 0
+                    && (window.lang === 'GB' || window.lang === 'FR' || window.lang === 'ES' || window.lang === 'IT' || window.lang === 'NL'
+                        || window.lang === 'DE' || window.lang === 'FI' || window.lang === 'NO' || window.lang === 'DK' || window.lang === 'SE' || window.lang === 'PL')) {
+                    var feTranslation = {
+                        "GB": {
+                            "buy_now": "Buy Now",
+                            "out_of_stock": "Out of Stock",
+                        },
+                        "DE": {
+                            "buy_now": "Jetzt Kaufen",
+                            "out_of_stock": "Derzeit Nicht Verfügbar"
+                        },
+                        "FR": {
+                            "buy_now": "Acheter maintenant",
+                            "out_of_stock": "Rupture De Stock"
+                        },
+                        "NL": {
+                            "buy_now": "Nu kopen",
+                            "out_of_stock": "Niet op voorraad"
+                        },
+                        "IT": {
+                            "buy_now": "Acquista ora",
+                            "out_of_stock": "Prodotto esaurito"
+                        }, "ES": {
+                            "buy_now": "Comprar Ahora",
+                            "out_of_stock": "Agotado"
+                        },
+                        "FI": {
+                            "buy_now": "Osta nyt",
+                            "out_of_stock": "Loppuunmyyty"
+                        },
+                        "SE": {
+                            "buy_now": "Köp nu",
+                            "out_of_stock": "Finns ej i lager"
+                        },
+                        "NO": {
+                            "buy_now": "Kjøp nå",
+                            "out_of_stock": "Ikke på lager"
+                        }, "DK": {
+                            "buy_now": "Køb det nu",
+                            "out_of_stock": "Udsolgt"
+                        },
+                        "PL": {
+                            "buy_now": "Kup Teraz",
+                            "out_of_stock": "Towar Wyprzedany"
+                        }
+                    };
+                    jQuery("div.fe-pids").each(function (i, v) {
+                        var fesk = jQuery(v).find("div:first").attr("class");
+                        var windowLocale = window.locale;
+                        if (window.locale !== "pl-pl" && window.locale !== "de-de" && window.locale !== "nl-nl" && window.locale !== "sv-se" && window.locale !== "da-dk" && window.locale !== "nb-no" && window.locale !== "fi-fi" && window.locale !== "en-gb" && window.locale !== "it-it" && window.locale !== "es-es" && window.locale !== "fr-fr") {
+                            windowLocale = window.locale.split("-")[1].toUpperCase();
+                        }
+                        var feUrl;
+                        var fehost = window.location.hostname.split("-");
+                        if (fehost.length > 1) {
+                            fehost = fehost[0] + "-";
+                        } else {
+                            fehost = "";
+                        }
+                        feUrl = "https://" + fehost + "api.store.nvidia.com/partner/v1/feinventory?status=1&skus=" + fesk + "&locale=" + windowLocale;
+                        jQuery.ajax({
+                            url: feUrl,
+                            beforeSend: function () {
+                                var srcImage;
+                                if (window.location.hostname == "localhost") {
+                                    srcImage = window.location.origin + "/assets/images/loader.gif";
+                                } else {
+                                    srcImage = window.location.origin + "/geforce/store/assets/images/loader.gif";
+                                }
+                                jQuery(v).find("a:last").html('<div id="loaderimage"><img src=' + srcImage + ' width="100px" height="20x"/></div>');
+                            },
+                            dataType: "json",
+                            type: "GET",
+                            contentType: "application/json",
+                            success: function (resp) {
+                                resp = resp['listMap'];
+                                if (resp && resp.length > 0) {
+                                    jQuery("button[class='stock-grey-out link-btn i-423']").remove();
+                                    var retailer_name = "";
+                                    if (resp[0].is_active && resp[0].is_active.toLowerCase() === 'true') {
+                                        try {
+                                            if (resp[0].product_url != null && resp[0].product_url != '') {
+                                                retailer_name = new URL(resp[0].product_url).hostname;
+                                            }
+                                        } catch (err) {
+                                            console.log(err);
+                                        }
+                                    }
+                                    var is_active = (resp[0].is_active && resp[0].is_active.toLowerCase() === 'true');
+                                    if (resp[0].product_url == "") {
+                                        is_active = false;
+                                    }
+                                    var feresp = [
+                                        {
+                                            "productId": jQuery(v).find("div:first").attr("id"),
+                                            "productTitle": fesk,
+                                            "logoUrl": "",
+                                            "isAvailable": is_active,
+                                            "salePrice": resp[0].price,
+                                            "directPurchaseLink": resp[0].product_url,
+                                            "purchaseLink": resp[0].product_url,
+                                            "hasOffer": false,
+                                            "offerText": null,
+                                            "partnerId": "111",
+                                            "storeId": "18",
+                                            "upc": resp[0].fe_sku,
+                                            "sku": fesk,
+                                            "stock": 0,
+                                            "retailerName": retailer_name,
+                                            "type": 29
+                                        }
+                                    ];
+                                    jQuery(v).find("div:first").html(JSON.stringify(feresp));
+                                    try { jQuery(v).find("a:last").html(""); } catch (err) { }
+                                    try { jQuery(v).find("a:last").find("button[class='extra_style buy-link i-408']").remove(); } catch (err) { }
+                                    try { jQuery(v).find("a:last").find("button[class='stock-grey-out link-btn i-408']").remove(); } catch (err) { }
+
+                                    if (is_active) {
+                                        $('#loaderimage').hide();
+                                        jQuery(v).find("a:last").removeAttr("class");
+                                        jQuery(v).find("a:last").append('<button class="extra_style buy-link i-408" fe="pid-1" data-fecall="true" data-color="#76b900" data-secondary-color="#fff" styles="" data-pid-code="' + feresp[0]['productId'] + '" data-mpn-code="' + fesk + '">' + feTranslation[window.lang].buy_now + '</button>');
+                                    } else {
+                                        $('#loaderimage').hide();
+                                        jQuery(v).find("a:last").append('<button class="stock-grey-out link-btn i-408" fe="pid-2" style="">' + feTranslation[window.lang].out_of_stock + '</button>');
+                                    }
+                                } else {
+                                    try { jQuery(v).find("a:last").html(""); } catch (err) { }
+                                    try { jQuery(v).find("a:last").find("button[class='extra_style buy-link i-408']").remove(); } catch (err) { }
+                                    try { jQuery(v).find("a:last").find("button[class='stock-grey-out link-btn i-408']").remove(); } catch (err) { }
+                                    $('#loaderimage').hide();
+                                    jQuery(v).find("a:last").append('<button class="stock-grey-out link-btn i-408" fe="pid-2" style="">' + feTranslation[window.lang].out_of_stock + '</button>');
+                                }
+                                buyevent();
+                            },
+                            error: function () {
+                                try { jQuery(v).find("a:last").remove(); } catch (err) { }
+                                try { jQuery(v).find("button[class='extra_style buy-link i-408']").remove(); } catch (err) { }
+                                try { jQuery(v).find("button[class='stock-grey-out link-btn i-408']").remove(); } catch (err) { }
+                                $('#loaderimage').hide();
+                                jQuery(v).append('<button class="stock-grey-out link-btn i-408" fe="pid-2" style="">' + feTranslation[window.lang].out_of_stock + '</button>');
+                            }
+                        });
+
+                    });
+
+                } else {
+                    buyevent();
+                }
+            }
+            var buyevent = function () {
+                jQuery(".buy-link").unbind();
+                (function (d, s, id) {
+                    if (d.getElementById(id + s)) document.getElementById(id + s).remove();
+                    var js, t = d.getElementsByTagName(s)[0];
+                    js = d.createElement(s);
+                    t.parentNode.insertBefore(js, t);
+                    var bskdnv = window.location.hostname.split("-");
+                    if (bskdnv.length > 1) {
+                        bskdnv = "https://" + bskdnv[0] + "-www.nvidia.partners/edge/";
+                    } else if (window.location.hostname.indexOf("local") != -1) {
+                        bskdnv = "/assets/";
+                    } else {
+                        bskdnv = "https://www.nvidia.partners/edge/";
+                    }
+
+                    js.id = id + s;
+                    js.src = bskdnv + "js/edge-buy.0.1.min.js";
+                    t.parentNode.insertBefore(js, t);
+                }(document, 'script', 'nvidia-'));
+            }
+            var reloadScript = function () {
+                nvbuyinit();
+            }
+            window.hatchwidgetHelpers = {
+                nvbuyinit: nvbuyinit,
+                reloadScript: reloadScript
+            }
+
+
+        }(window, undefined));
+
+        ;
+        (function () {
+            var initclose = function () {
+                $('.search-form-container input[type="text"]').on('input propertychange', function () {
+                    var $this = $(this);
+                    var visible = Boolean($this.val());
+                    $this.siblings('.form-control-clear').toggleClass('hidden', !visible);
+                }).trigger('propertychange');
+
+                $('.form-control-clear').click(function () {
+                    $(this).siblings('input[type="text"]').val('')
+                        .trigger('propertychange').focus();
+                    // $('#searchform').submit();
+                });
+            }
+
+            var showClose = function () {
+                $('.form-control-clear').show();
+            }
+
+            var hideFeatured = function () {
+                $('.product-details-list-tile').each(function (k, v) {
+                    if (k === 0 || k === 1) { } else {
+                        $(this).find('.image-cont').css('visibility', 'hidden');
+                    }
+                })
+                $('.product-details-grid-tile').each(function (k1, v1) {
+                    if (k1 === 0 || k1 === 1) { } else {
+                        $(this).find('.image-cont').css('visibility', 'hidden');
+                    }
+                })
+            }
+
+            if (window.searchHelpers == null) {
+                window.searchHelpers = {
+                    initclose: initclose,
+                    showClose: showClose,
+                    hideFeatured: hideFeatured
+                }
+            }
+        }(window, undefined));
+
+
+    </script>
+
+
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+<style>@charset "UTF-8";body{min-width:320px;height:100%}body:after{position:absolute;bottom:0;visibility:hidden;z-index:-1}@media screen and (min-width: 768px) and (max-width: 1024px){body:after{content:"tablet"}}@media screen and (max-width: 767px){body:after{content:"mobile"}}*,:after,:before{box-sizing:border-box}a{color:#76b900;text-decoration:none}body{position:relative;font-family:NVIDIA,Helvetica,Arial,Sans-Serif;font-size:16px;background-color:#000;padding:0;margin:0;color:#eee;line-height:18px;overflow-y:auto;overflow-x:hidden}body:after{content:"desktop"}@media screen and (min-width: 768px) and (max-width: 1024px){body{content:"tablet"}}@media screen and (max-width: 767px){body{content:"mobile"}}a:hover{color:#eee;text-decoration:none}</style><link rel="stylesheet" href="/geforce/store/styles.d1597ecea0ac388163c5.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/geforce/store/styles.d1597ecea0ac388163c5.css"></noscript></head>
+
+<body data-edit-mode="" class="base_v4 v4_design">
+
+
+    <script>
+        var clientStyles = document.createElement('link');
+        if (window.location.hostname === "localhost") {
+            clientStyles.href = "/assets/styles/clientlibs_global_v2.min.db621c7bf995de20178f2ee63b208596.css";
+        } else {
+            clientStyles.href = "/geforce/store/assets/styles/clientlibs_global_v2.min.db621c7bf995de20178f2ee63b208596.css";
+        }
+        clientStyles.rel = "stylesheet";
+        clientStyles.id = "nav_global_css";
+        document.getElementsByTagName('head')[0].appendChild(clientStyles);
+
+    </script>
+    <app-root></app-root>
+    <script type="text/javascript">
+        setTimeout(function () { try { _satellite.pageBottom(); } catch (err) { } }, 1000);
+    </script>
+    <div style="display:none"><a href="" id="aevent" target="_blank"></a></div>
+<script src="/geforce/store/runtime-es2015.f91f79d4a5ed9241932d.js" type="module"></script><script src="/geforce/store/runtime-es5.f91f79d4a5ed9241932d.js" nomodule defer></script><script src="/geforce/store/polyfills-es5.0901a0ff5681f96dedc4.js" nomodule defer></script><script src="/geforce/store/polyfills-es2015.0feb2df4a6ac2e27620b.js" type="module"></script><script src="/geforce/store/scripts.3d7a8224e7b2efd3650b.js" defer></script><script src="/geforce/store/main-es2015.b03bf9936a2e18096502.js" type="module"></script><script src="/geforce/store/main-es5.b03bf9936a2e18096502.js" nomodule defer></script>
+
+</body></html>
